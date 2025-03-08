@@ -3,12 +3,14 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
 VisualStudioVersion = 17.9.34902.65
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Movies.API", "Movies.API\Movies.API.csproj", "{B74C72D6-A652-4525-8D04-7E9273EF9C29}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Movies.API", "Movies.API\Movies.API.csproj", "{B74C72D6-A652-4525-8D04-7E9273EF9C29}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{F792ECE9-06E5-4176-B169-342F717D5B5E}"
 	ProjectSection(SolutionItems) = preProject
 		.gitignore = .gitignore
 	EndProjectSection
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Movies.Application", "Movies.Application\Movies.Application.csproj", "{D0EB2773-9531-4AA1-B602-5A7E13B6737A}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -20,6 +22,10 @@ Global
 		{B74C72D6-A652-4525-8D04-7E9273EF9C29}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{B74C72D6-A652-4525-8D04-7E9273EF9C29}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{B74C72D6-A652-4525-8D04-7E9273EF9C29}.Release|Any CPU.Build.0 = Release|Any CPU
+		{D0EB2773-9531-4AA1-B602-5A7E13B6737A}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{D0EB2773-9531-4AA1-B602-5A7E13B6737A}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{D0EB2773-9531-4AA1-B602-5A7E13B6737A}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{D0EB2773-9531-4AA1-B602-5A7E13B6737A}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
