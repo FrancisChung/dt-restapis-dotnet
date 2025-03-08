@@ -10,7 +10,7 @@ namespace Movies.Application.Repositories
     internal interface IMovieRepository
     {
         Task<bool> CreateAsync(Movie movie);
-        Task<Movie> GetByIdAsync(Guid id);
+        Task<Movie?> GetByIdAsync(Guid id);
         Task<IEnumerable<Movie>> GetAllAsync();
         Task<bool> UpdateAsync(Movie movie);
         Task<bool> DeleteByIdAsync(Guid id);
