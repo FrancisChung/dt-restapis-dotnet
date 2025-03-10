@@ -46,4 +46,5 @@ namespace Movies.Application.Repositories
             var movieRemoved = removeCount > 0;
             return Task.FromResult(movieRemoved);
         }
+    }
 }
