@@ -35,7 +35,7 @@ namespace Movies.API.Controllers
                Title = movie.Title,
                Genres = movie.Genres,
                YearOfRelease = movie.YearOfRelease
-           }
+           };
            return Ok(response);
         }
     }
