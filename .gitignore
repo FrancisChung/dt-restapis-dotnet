@@ -5,3 +5,5 @@ Helpers/
 1.GettingStarted/
 *.csproj.user
 *.dotsettings
+launchSettings.json
+Movies.API.http
