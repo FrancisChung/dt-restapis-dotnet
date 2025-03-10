@@ -36,7 +36,8 @@ namespace Movies.API.Controllers
                Genres = movie.Genres,
                YearOfRelease = movie.YearOfRelease
            };
-           return Ok(response);
+           //return Ok(response);
+           return Created($"/api/movies/{movie.Id}", movie);
         }
     }
 }
