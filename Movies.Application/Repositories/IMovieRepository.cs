@@ -7,7 +7,7 @@ using Movies.Application.Models;
 
 namespace Movies.Application.Repositories
 {
-    internal interface IMovieRepository
+    public interface IMovieRepository
     {
         Task<bool> CreateAsync(Movie movie);
         Task<Movie?> GetByIdAsync(Guid id);
