@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace Movies.Application.Models
 {
-    internal class Movie
+    public class Movie
     {
         public required Guid Id { get; init; }
         public required string Title { get; set; }
