@@ -8,7 +8,6 @@ using Movies.Contracts.Responses;
 namespace Movies.API.Controllers
 {
     [ApiController]
-    [Route("api")]
     public class MoviesController : ControllerBase
     {
         private readonly IMovieRepository _movieRepository;
@@ -18,7 +17,7 @@ namespace Movies.API.Controllers
             _movieRepository = movieRepository;
         }
 
-        [HttpPost("movies")]
+        [HttpPost(ApiEndpoints.Movies.Create)]
         public async Task<IActionResult> Create([FromBody] CreateMovieRequest request)
         {
             var movie = request.MapToMovie();
@@ -32,7 +31,7 @@ namespace Movies.API.Controllers
                YearOfRelease = movie.YearOfRelease
            };
            //return Ok(response);
-           return Created($"/api/movies/{movie.Id}", movie);
+           return Created($"{ApiEndpoints.Movies.Create}/{movie.Id}", movie);
         }
     }
 }
