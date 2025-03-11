@@ -33,5 +33,15 @@ namespace Movies.API.Controllers
            //return Ok(response);
            return Created($"{ApiEndpoints.Movies.Create}/{movie.Id}", movie);
         }
+
+        [HttpGet(ApiEndpoints.Movies.Get)]
+        public async Task<IActionResult> Get([FromRoute] Guid id)
+        {
+            var movie = await _movieRepository.GetByIdAsync(id);
+            if (movie is null)
+                return NotFound();
+
+            return Ok(movie.MapToResponse());
+        }
     }
 }
