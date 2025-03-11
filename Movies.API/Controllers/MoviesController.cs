@@ -53,5 +53,16 @@ namespace Movies.API.Controllers
 
             return Ok(movies.MapToResponse());
         }
+
+        [HttpGet(ApiEndpoints.Movies.Update)]
+        public async Task<IActionResult> Update([FromRoute] Guid id, [FromBody] UpdateMovieRequest request)
+        {
+            var movie = request.MapToMovie(id);
+            var updated = await _movieRepository.UpdateAsync(movie);
+            if (updated)
+                return Ok(movie.MapToResponse());
+            else
+                return NotFound();
+        }
     }
 }
