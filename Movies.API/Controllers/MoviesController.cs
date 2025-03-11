@@ -64,5 +64,15 @@ namespace Movies.API.Controllers
             else
                 return NotFound();
         }
+
+        [HttpGet(ApiEndpoints.Movies.Delete)]
+        public async Task<IActionResult> Delete([FromRoute] Guid id)
+        {
+            var updated = await _movieRepository.DeleteByIdAsync(id);
+            if (updated)
+                return Ok();
+            else
+                return NotFound();
+        }
     }
 }
