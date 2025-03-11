@@ -27,5 +27,13 @@ namespace Movies.API.Mapping
                 YearOfRelease = movie.YearOfRelease
             };
         }
+
+        public static MoviesResponse MapToResponse(this IEnumerable<Movie> movies)
+        {
+            return new MoviesResponse
+            {
+                Items = movies.Select(MapToResponse)
+            };
+        }
     }
 }
