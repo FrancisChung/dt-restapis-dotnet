@@ -43,5 +43,15 @@ namespace Movies.API.Controllers
 
             return Ok(movie.MapToResponse());
         }
+
+        [HttpGet(ApiEndpoints.Movies.GetAll)]
+        public async Task<IActionResult> GetAll()
+        {
+            var movies = await _movieRepository.GetAllAsync();
+            if (movies is null)
+                return NotFound();
+
+            return Ok(movies.MapToResponse());
+        }
     }
 }
