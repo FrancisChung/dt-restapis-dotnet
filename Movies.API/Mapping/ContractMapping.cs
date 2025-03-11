@@ -17,11 +17,11 @@ namespace Movies.API.Mapping
             };
         }
 
-        public static Movie MapToMovie(this UpdateMovieRequest request)
+        public static Movie MapToMovie(this UpdateMovieRequest request, Guid id)
         {
             return new Movie
             {
-                Id = Guid.NewGuid(),
+                Id = id,
                 Title = request.Title,
                 Genres = request.Genres.ToList(),
                 YearOfRelease = request.YearOfRelease
