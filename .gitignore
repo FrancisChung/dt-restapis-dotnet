@@ -7,3 +7,4 @@ Helpers/
 *.dotsettings
 launchSettings.json
 Movies.API.http
+*.zip
