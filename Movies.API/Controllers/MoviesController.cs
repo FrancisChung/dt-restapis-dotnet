@@ -54,7 +54,7 @@ namespace Movies.API.Controllers
             return Ok(movies.MapToResponse());
         }
 
-        [HttpGet(ApiEndpoints.Movies.Update)]
+        [HttpPut(ApiEndpoints.Movies.Update)]
         public async Task<IActionResult> Update([FromRoute] Guid id, [FromBody] UpdateMovieRequest request)
         {
             var movie = request.MapToMovie(id);
@@ -65,7 +65,7 @@ namespace Movies.API.Controllers
                 return NotFound();
         }
 
-        [HttpGet(ApiEndpoints.Movies.Delete)]
+        [HttpDelete(ApiEndpoints.Movies.Delete)]
         public async Task<IActionResult> Delete([FromRoute] Guid id)
         {
             var updated = await _movieRepository.DeleteByIdAsync(id);
