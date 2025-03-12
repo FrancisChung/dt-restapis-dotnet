@@ -1,7 +1,6 @@
 .vs/
 bin/
 obj/
-Helpers/
 1.GettingStarted/
 *.csproj.user
 *.dotsettings

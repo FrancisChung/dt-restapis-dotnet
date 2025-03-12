@@ -6,13 +6,14 @@ MinimumVisualStudioVersion = 10.0.40219.1
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{F792ECE9-06E5-4176-B169-342F717D5B5E}"
 	ProjectSection(SolutionItems) = preProject
 		.gitignore = .gitignore
+		Helpers\movies.json = Helpers\movies.json
 	EndProjectSection
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Movies.Application", "Movies.Application\Movies.Application.csproj", "{D0EB2773-9531-4AA1-B602-5A7E13B6737A}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Movies.Contracts", "Movies.Contracts\Movies.Contracts.csproj", "{AF102DBE-620C-4128-9E13-E2F66C8E3249}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Movies.API", "Movies.API\Movies.API.csproj", "{EBAA45D5-248A-4EDA-AD0D-789F353632A2}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Movies.API", "Movies.API\Movies.API.csproj", "{EBAA45D5-248A-4EDA-AD0D-789F353632A2}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
