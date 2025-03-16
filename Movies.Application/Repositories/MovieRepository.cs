@@ -64,9 +64,28 @@ namespace Movies.Application.Repositories
             return movie;
         }
 
-        public Task<Movie?> GetBySlugAsync(string slug)
+        public async Task<Movie?> GetBySlugAsync(string slug)
         {
-            throw new NotImplementedException();
+            using var connection = await _dbConnectionFactory.CreateConnectionAsync();
+            var movie = await connection.QueryFirstOrDefaultAsync<Movie>(
+                new CommandDefinition(@"
+                SELECT id, slug, title, yearofrelease
+                FROM movies
+                WHERE slug = @slug", new { slug }));
+
+            if (movie is null)
+                return null;
+
+            var genres = await connection.QueryAsync<string>(
+                new CommandDefinition(@"
+                SELECT name
+                FROM genres
+                WHERE movieId = @Id", new { id = movie.Id }));
+
+            foreach (var genre in genres)
+                movie.Genres.Add(genre);
+
+            return movie;
         }
 
         public Task<IEnumerable<Movie>> GetAllAsync()
