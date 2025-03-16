@@ -40,9 +40,28 @@ namespace Movies.Application.Repositories
             return result > 0;
         }
 
-        public Task<Movie?> GetByIdAsync(Guid id)
+        public async Task<Movie?> GetByIdAsync(Guid id)
         {
-            throw new NotImplementedException();
+            using var connection = await _dbConnectionFactory.CreateConnectionAsync();
+            var movie = await connection.QueryFirstOrDefaultAsync<Movie>(
+                new CommandDefinition(@"
+                SELECT id, slug, title, yearofrelease
+                FROM movies
+                WHERE id = @Id", new { id }));
+            
+            if (movie is null)
+                return null;
+
+            var genres = await connection.QueryAsync<string>(
+                new CommandDefinition(@"
+                SELECT name
+                FROM genres
+                WHERE movieId = @Id", new { id }));
+            
+            foreach (var genre in genres)
+                movie.Genres.Add(genre);
+
+            return movie;
         }
 
         public Task<Movie?> GetBySlugAsync(string slug)
