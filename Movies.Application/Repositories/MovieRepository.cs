@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -105,9 +106,28 @@ namespace Movies.Application.Repositories
             return movies;
         }
 
-        public Task<bool> UpdateAsync(Movie movie)
+        public async Task<bool> UpdateAsync(Movie movie)
         {
-            throw new NotImplementedException();
+            using var connection = await _dbConnectionFactory.CreateConnectionAsync();
+            using var transaction = connection.BeginTransaction();
+            connection.ExecuteAsync(new CommandDefinition(@"
+                Delete from genres where id=@id", new { id = movie.Id }));
+
+            foreach (var genre in movie.Genres)
+            {
+                await connection.ExecuteAsync(new CommandDefinition(@"
+                        INSERT INTO genres (movieId, name)
+                        VALUES (@MovieId, @Name)
+                    ", new { MovieId = movie.Id, Name = genre }));
+            }
+
+            var result = await connection.ExecuteAsync(new CommandDefinition(@"
+                UPDATE movies
+                SET slug = @Slug, title = @Title, yearofrelease = @YearOfRelease
+                WHERE id = @Id", movie));
+
+            transaction.Commit();
+            return result > 0;
         }
 
         public Task<bool> DeleteByIdAsync(Guid id)
