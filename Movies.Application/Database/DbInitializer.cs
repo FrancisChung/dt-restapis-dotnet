@@ -18,14 +18,19 @@ namespace Movies.Application.Database
 
         public async Task InitializeAsync()
         {
+            /*using var connection2 = await _dbConnectionFactory.CreateConnectionAsync();
+            await connection2.ExecuteAsync(@"
+                DROP TABLE genres;
+                DROP TABLE movies;
+            ")*/;
+
             using var connection = await _dbConnectionFactory.CreateConnectionAsync();
             await connection.ExecuteAsync(@"
                 CREATE TABLE IF NOT EXISTS movies (
                     id UUID PRIMARY KEY,
                     slug TEXT not null,
                     title TEXT NOT NULL,
-                    yearofrelease INTEGER NOT NULL,
-                    genre TEXT NOT NULL
+                    yearofrelease INTEGER NOT NULL
                 );
             ");
 
