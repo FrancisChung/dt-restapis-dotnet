@@ -115,9 +115,11 @@ namespace Movies.Application.Repositories
             throw new NotImplementedException();
         }
 
-        public Task<bool> ExistsByIdAsync(Guid id)
+        public async  Task<bool> ExistsByIdAsync(Guid id)
         {
-            throw new NotImplementedException(); ;
+            using var connection = await _dbConnectionFactory.CreateConnectionAsync();
+            return await connection.ExecuteScalarAsync<bool>(new CommandDefinition(@"
+                SELECT EXISTS(SELECT 1 FROM movies WHERE id = @Id)", new { id }));
         }
     }
 }
