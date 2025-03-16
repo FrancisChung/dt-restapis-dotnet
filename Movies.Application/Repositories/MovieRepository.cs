@@ -111,7 +111,7 @@ namespace Movies.Application.Repositories
             using var connection = await _dbConnectionFactory.CreateConnectionAsync();
             using var transaction = connection.BeginTransaction();
             connection.ExecuteAsync(new CommandDefinition(@"
-                Delete from genres where id=@id", new { id = movie.Id }));
+                Delete from genres where movieid=@id", new { id = movie.Id }));
 
             foreach (var genre in movie.Genres)
             {
@@ -130,9 +130,18 @@ namespace Movies.Application.Repositories
             return result > 0;
         }
 
-        public Task<bool> DeleteByIdAsync(Guid id)
+        public async Task<bool> DeleteByIdAsync(Guid id)
         {
-            throw new NotImplementedException();
+            using var connection = await _dbConnectionFactory.CreateConnectionAsync();
+            using var transaction = connection.BeginTransaction();
+            await connection.ExecuteAsync(new CommandDefinition(@"
+                Delete from genres where movieid=@id", new { id }));
+
+            var result = await connection.ExecuteAsync(new CommandDefinition(@"
+                Delete from movies where id=@id", new { id  }));
+
+            transaction.Commit();
+            return result > 0;
         }
 
         public async  Task<bool> ExistsByIdAsync(Guid id)
