@@ -1,5 +1,0 @@
-@Movies.API_HostAddress = http://localhost:5160
-
-Accept: application/json
-
-###
