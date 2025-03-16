@@ -30,8 +30,14 @@ namespace Movies.Application.Database
             ");
 
             await connection.ExecuteAsync(@"
-                CREATE UNIQUE INDEX CONCURRENTLY IF NOT EXISTS idx_movies_slug
+                CREATE UNIQUE INDEX CONCURRENTLY IF NOT EXISTS movies_slug_idx
                 ON movies using btree(slug);
+            ");
+
+            await connection.ExecuteAsync(@"
+                CREATE TABLE IF NOT EXISTS genres (
+                    movieId UUID references movies(Id),
+                    name TEXT NOT NULL);
             ");
         }
     }
