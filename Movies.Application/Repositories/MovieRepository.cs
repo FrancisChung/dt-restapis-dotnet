@@ -23,8 +23,8 @@ namespace Movies.Application.Repositories
             using var transaction = connection.BeginTransaction();
 
             var result = await connection.ExecuteAsync(new CommandDefinition(@"
-                INSERT INTO movies (id, slug, title, yearofrelease, genre)
-                VALUES (@Id, @Slug, @Title, @YearOfRelease, @Genre)
+                INSERT INTO movies (id, slug, title, yearofrelease)
+                VALUES (@Id, @Slug, @Title, @YearOfRelease)
                 ", movie));
             if (result > 0)
             {
