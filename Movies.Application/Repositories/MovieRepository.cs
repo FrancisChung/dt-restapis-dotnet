@@ -88,9 +88,21 @@ namespace Movies.Application.Repositories
             return movie;
         }
 
-        public Task<IEnumerable<Movie>> GetAllAsync()
+        public async Task<IEnumerable<Movie>> GetAllAsync()
         {
-            throw new NotImplementedException();
+            using var connection = await _dbConnectionFactory.CreateConnectionAsync();
+            var result = await connection.QueryAsync(new CommandDefinition(@"
+                SELECT id, slug, title, yearofrelease, string_agg(g.name,',') as genres
+                FROM movies m left join genres g on m.id = g.movieid group by id"));
+
+            var movies = result.Select(x => new Movie
+            {
+                Id = x.id,
+                Title = x.title,
+                YearOfRelease = x.yearofrelease,
+                Genres = Enumerable.ToList(x.genres.Split(','))
+            });
+            return movies;
         }
 
         public Task<bool> UpdateAsync(Movie movie)
