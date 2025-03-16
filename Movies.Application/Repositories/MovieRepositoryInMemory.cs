@@ -52,5 +52,11 @@ namespace Movies.Application.Repositories
             var movieRemoved = removeCount > 0;
             return Task.FromResult(movieRemoved);
         }
+
+        public Task<bool> ExistsByIdAsync(Guid id)
+        {
+            var exists = _movies.Any(x => x.Id == id);
+            return Task.FromResult(exists);
+        }
     }
 }
