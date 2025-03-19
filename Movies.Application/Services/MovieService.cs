@@ -19,31 +19,39 @@ namespace Movies.Application.Services
 
         public Task<bool> CreateAsync(Movie movie)
         {
-            throw new NotImplementedException();
+           return _movieRepository.CreateAsync(movie);
         }
         public Task<bool> DeleteByIdAsync(Guid id)
         {
-            throw new NotImplementedException();
+            return _movieRepository.DeleteByIdAsync(id);
         }
         public Task<bool> ExistsByIdAsync(Guid id)
         {
-            throw new NotImplementedException();
+            return _movieRepository.ExistsByIdAsync(id);
         }
         public Task<IEnumerable<Movie>> GetAllAsync()
         {
-            throw new NotImplementedException();
+            return _movieRepository.GetAllAsync();
         }
         public Task<Movie?> GetBySlugAsync(string slug)
         {
-            throw new NotImplementedException();
+            return _movieRepository.GetBySlugAsync(slug);
         }
         public Task<Movie?> GetByIdAsync(Guid id)
         {
-            throw new NotImplementedException();
+            return _movieRepository.GetByIdAsync(id);
         }
-        public Task<Movie?> UpdateAsync(Movie movie)
+        public async Task<Movie?> UpdateAsync(Movie movie)
         {
-            throw new NotImplementedException();
+            var movieExists = await _movieRepository.ExistsByIdAsync(movie.Id);
+
+            if (!movieExists)
+            {
+                return null;
+            }
+
+            await _movieRepository.UpdateAsync(movie);
+            return movie;
         }
     }
 }
