@@ -1,3 +1,4 @@
+using Movies.API.Mapping;
 using Movies.Application;
 using Movies.Application.Database;
 using Movies.Application.Repositories;
@@ -23,6 +24,7 @@ if (app.Environment.IsDevelopment())
     app.UseSwaggerUI();
 }
 
+app.UseMiddleware<ValidationMappingMiddleware>();
 app.MapControllers();
 var dbInitializer = app.Services.GetRequiredService<DbInitializer>();
 await dbInitializer.InitializeAsync();
