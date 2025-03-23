@@ -9,12 +9,12 @@ namespace Movies.Application.Services
 {
     public interface IMovieService
     {
-        Task<bool> CreateAsync(Movie movie);
-        Task<Movie?> GetByIdAsync(Guid id);
-        Task<Movie?> GetBySlugAsync(string slug);
-        Task<IEnumerable<Movie>> GetAllAsync();
-        Task<Movie?> UpdateAsync(Movie movie);
-        Task<bool> DeleteByIdAsync(Guid id);
-        Task<bool> ExistsByIdAsync(Guid id);
+        Task<bool> CreateAsync(Movie movie, CancellationToken token);
+        Task<Movie?> GetByIdAsync(Guid id, CancellationToken token);
+        Task<Movie?> GetBySlugAsync(string slug, CancellationToken token);
+        Task<IEnumerable<Movie>> GetAllAsync(CancellationToken token);
+        Task<Movie?> UpdateAsync(Movie movie, CancellationToken token);
+        Task<bool> DeleteByIdAsync(Guid id, CancellationToken token);
+        Task<bool> ExistsByIdAsync(Guid id, CancellationToken token);
     }
 }
