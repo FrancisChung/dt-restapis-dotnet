@@ -5,17 +5,18 @@ using System.Text;
 using System.Threading.Tasks;
 using FluentValidation;
 using Movies.Application.Models;
+using Movies.Application.Repositories;
 using Movies.Application.Services;
 
 namespace Movies.Application.Validators
 {
     public class MovieValidator : AbstractValidator<Movie>
     {
-        private readonly IMovieService _movieService;
+        private readonly IMovieRepository _movieRepository;
 
-        public MovieValidator(IMovieService movieService)
+        public MovieValidator(IMovieRepository movieRepository)
         {
-            _movieService = movieService;
+            _movieRepository = movieRepository;
 
             RuleFor(x => x.Id)
                 .NotEmpty();
@@ -36,7 +37,7 @@ namespace Movies.Application.Validators
 
         private async Task<bool> ValidateSlug(Movie movie, string slug, CancellationToken cancellationToken)
         {
-            var existingMovie = await _movieService.GetBySlugAsync(slug);
+            var existingMovie = await _movieRepository.GetBySlugAsync(slug);
 
             if (existingMovie is not null)
                 return existingMovie.Id == movie.Id;
