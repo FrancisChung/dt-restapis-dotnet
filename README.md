@@ -13,4 +13,4 @@ https://courses.dometrain.com/courses/take/from-zero-to-hero-rest-apis-in-net
 - To connect to Postgres via Visual Studio, use this extension\
 https://marketplace.visualstudio.com/items?itemName=RojanskyS.NpgsqlPostgreSQLIntegration
 - Nick decides to remove the genre field from the movies table without telling the audience, once he decides to create a genres table
-
+- FluentValidation.DependencyInjectionExtensions nuget package is needed to be added [Implementing Validation]
