@@ -13,7 +13,7 @@ namespace Movies.API.Mapping
             _next = next;
         }
 
-        public async Task HandleAsync(HttpContext context)
+        public async Task InvokeAsync(HttpContext context)
         {
             try
             {
