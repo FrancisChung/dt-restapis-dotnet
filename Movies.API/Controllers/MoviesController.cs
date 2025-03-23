@@ -22,7 +22,7 @@ namespace Movies.API.Controllers
         public async Task<IActionResult> Create([FromBody] CreateMovieRequest request)
         {
             var movie = request.MapToMovie(); 
-            var result = await _movieRepository.CreateAsync(movie); 
+            var result = await _movieService.CreateAsync(movie); 
             return CreatedAtAction(nameof(Get),new {idOrSlug = movie.Id}, movie );
         }
 
