@@ -47,6 +47,7 @@ namespace Movies.Application.Services
         }
         public async Task<Movie?> UpdateAsync(Movie movie)
         {
+            await _movieValidator.ValidateAndThrowAsync(movie);
             var movieExists = await _movieRepository.ExistsByIdAsync(movie.Id);
 
             if (!movieExists)
