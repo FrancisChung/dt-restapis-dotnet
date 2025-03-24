@@ -7,7 +7,7 @@ using Movies.Application.Models;
 
 namespace Movies.Application.Repositories
 {
-    internal class MovieRepositoryInMemory : IMovieRepository
+    internal class MovieRepositoryInMemory
     {
         private readonly List<Movie> _movies = new();
 
